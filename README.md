@@ -8,7 +8,7 @@ Despite its origin as homework, I have decided to upload it, since it allows for
 
 The original assignment required us to write the code for a quadtree compression algorithm as described [here](https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/). The basic idea is to render areas of lower frequencies as constant blocks and thereby compress the image.
 
-![before](./images/StanleySquare.png)
+![before](./images/stanleySquare.png)
 ![after](./images/prelim-stanley.05.png)
 
 Provided with the algorithm's logic, images of its desired outcome, and a bare-bone skeleton code, I put myself to work. As suggested by the instructions, I first had to come up with a clever method to compute the _statistics_ necessary for the compilation of a so-called _toqutree_ (torus-quadtree). In a second step, I had to apply the statistics in order to convert an input image recursively into a quadtree structure. Accordingly, my main contribution can be found in the following files:
