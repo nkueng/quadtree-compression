@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us" class="gr__ugrad_cs_ubc_ca"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title> PA3 - CPSC221 2018W2: Data Structures </title>
+
+        <meta name="base_url" content="https://www.ugrad.cs.ubc.ca/~cs221/2018W2">
+
+        <link rel="stylesheet" media="screen" href="./PA3 - CPSC221 2018W2_ Data Structures_files/pure-min.css">
+        <link rel="stylesheet" media="screen" href="./PA3 - CPSC221 2018W2_ Data Structures_files/grids-responsive-min.css">
+
+        <link rel="stylesheet" media="screen" href="./PA3 - CPSC221 2018W2_ Data Structures_files/main.css">
+        <link rel="stylesheet" media="print" href="./PA3 - CPSC221 2018W2_ Data Structures_files/print.css">
+
+        <link rel="shortcut icon" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/favicon.ico">
+        <link rel="icon" type="image/png" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/favicon.png">
+
+        <link href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/" rel="alternate" type="application/rss+xml" title="CPSC221 2018W2: Data Structures">
+
+        <link rel="stylesheet" media="screen" href="./PA3 - CPSC221 2018W2_ Data Structures_files/highlightjs-vs.min.css">
+
+        
+
+
+<script async="" src="./PA3 - CPSC221 2018W2_ Data Structures_files/analytics.js"></script><script type="text/x-mathjax-config;executed=true">
+            MathJax.Hub.Config({
+                    TeX: {
+                        extensions: [ "AMSmath.js", "AMSsymbols.js" ]
+                    },
+                    tex2jax: {
+                        inlineMath: [['\\(','\\)'], ['$', '$']],
+                        displayMath: [['\\[','\\]'], ['$$','$$']]
+                    },
+                });
+        </script>
+
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-1728599-5', 'auto');
+        ga('require', 'linkid');
+        ga('send', 'pageview');
+
+        </script>
+
+        
+
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style type="text/css">.MathJax_Display {text-align: center; margin: 1em 0em; position: relative; display: block!important; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%}
+.MathJax .merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MathJax .MJX-monospace {font-family: monospace}
+.MathJax .MJX-sans-serif {font-family: sans-serif}
+#MathJax_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true'); padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.MathJax {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+.MathJax:focus, body :focus .MathJax {display: inline-table}
+.MathJax.MathJax_FullWidth {text-align: center; display: table-cell!important; width: 10000em!important}
+.MathJax img, .MathJax nobr, .MathJax a {border: 0; padding: 0; margin: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!important; vertical-align: 0!important}
+.MathJax span {display: inline; position: static; border: 0; padding: 0; margin: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+.MathJax nobr {white-space: nowrap!important}
+.MathJax img {display: inline!important; float: none!important}
+.MathJax * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.MathJax_Processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MathJax_Processed {display: none!important}
+.MathJax_ExBox {display: block!important; overflow: hidden; width: 1px; height: 60ex; min-height: 0; max-height: none}
+.MathJax .MathJax_EmBox {display: block!important; overflow: hidden; width: 1px; height: 60em; min-height: 0; max-height: none}
+.MathJax_LineBox {display: table!important}
+.MathJax_LineBox span {display: table-cell!important; width: 10000em!important; min-width: 0; max-width: none; padding: 0; border: 0; margin: 0}
+.MathJax .MathJax_HitBox {cursor: text; background: white; opacity: 0; filter: alpha(opacity=0)}
+.MathJax .MathJax_HitBox * {filter: none; opacity: 1; background: transparent}
+#MathJax_Tooltip * {filter: none; opacity: 1; background: transparent}
+@font-face {font-family: MathJax_Blank; src: url('about:blank')}
+.MathJax .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body data-no-instant="" data-gr-c-s-loaded="true"><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"></div></div><div id="MathJax_Message" style="display: none;"></div>
+<div class="pure-g" role="navigation" id="header">
+    <div class="pure-u-1 pure-u-md-3-24 pure-u-lg-6-24">
+        <div class="pure-menu pure-menu-horizontal menu-header">
+            <a href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/#" class="menu-toggle" id="menu-toggle"><i class="bar"></i><i class="bar"></i><i class="bar"></i></a>
+            <a class="pure-menu-heading" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2">CPSC 221</a>
+        </div>
+    </div>
+    <div class="pure-u-1 pure-u-md-21-24 pure-u-lg-18-24">
+        <div class="pure-menu pure-menu-horizontal menu-can-transform">
+            <ul class="pure-menu-list">
+            
+            
+                
+                
+                
+                    
+                
+                
+                    <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover ">
+                        <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/info/syllabus">Course Info</a>
+                        <ul class="pure-menu-children" role="menu">
+                        
+                            <li class="pure-menu-item ">
+                                <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/info/staff/">Staff</a>
+                            </li>
+                        
+                            <li class="pure-menu-item ">
+                                <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/info/assignment-faq/">Assignment FAQ</a>
+                            </li>
+                        
+                            <li class="pure-menu-item ">
+                                <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/info/faq/">FAQ</a>
+                            </li>
+                        
+                            <li class="pure-menu-item ">
+                                <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/info/integrity/">Academic Integrity</a>
+                            </li>
+                        
+                            <li class="pure-menu-item ">
+                                <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/info/environment/">Computing Environment</a>
+                            </li>
+                        
+                            <li class="pure-menu-item ">
+                                <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/info/syllabus/">Syllabus</a>
+                            </li>
+                        
+                        </ul>
+                    </li>
+                
+            
+                
+                
+                
+                    
+                
+                
+                    <li class="pure-menu-item ">
+                        <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/calendar">
+                            Calendar
+                        </a>
+                    </li>
+                
+            
+                
+                
+                
+                    
+                
+                
+                    <li class="pure-menu-item ">
+                        <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/lectures">
+                            Lectures
+                        </a>
+                    </li>
+                
+            
+                
+                
+                
+                    
+                
+                
+                    <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover ">
+                        <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/labs">Labs</a>
+                        <ul class="pure-menu-children" role="menu">
+                        
+                            <li class="pure-menu-item ">
+                                <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/labs/graphs/">lab_graphs</a>
+                            </li>
+                        
+                            <li class="pure-menu-item ">
+                                <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/labs/heaps/">lab_heaps</a>
+                            </li>
+                        
+                            <li class="pure-menu-item ">
+                                <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/labs/hash/">lab_hash</a>
+                            </li>
+                        
+                            <li class="pure-menu-item ">
+                                <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/labs/dict/">lab_dict</a>
+                            </li>
+                        
+                            <li class="pure-menu-item ">
+                                <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/labs/avl/">lab_avl</a>
+                            </li>
+                        
+                            <li class="pure-menu-item ">
+                                <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/labs/trees/">lab_trees</a>
+                            </li>
+                        
+                            <li class="pure-menu-item ">
+                                <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/labs/quacks/">lab_quacks</a>
+                            </li>
+                        
+                            <li class="pure-menu-item ">
+                                <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/labs/linkedlists/">lab_linkedlists</a>
+                            </li>
+                        
+                            <li class="pure-menu-item ">
+                                <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/labs/debug/">lab_debug</a>
+                            </li>
+                        
+                            <li class="pure-menu-item ">
+                                <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/labs/intro/">lab_intro</a>
+                            </li>
+                        
+                        </ul>
+                    </li>
+                
+            
+                
+                
+                    
+                
+                
+                    
+                
+                
+                    <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover pure-menu-selected">
+                        <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps">Assignments</a>
+                        <ul class="pure-menu-children" role="menu">
+                        
+                            <li class="pure-menu-item ">
+                                <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p2/">PA 2</a>
+                            </li>
+                        
+                            <li class="pure-menu-item ">
+                                <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p1/">PA1</a>
+                            </li>
+                        
+                            <li class="pure-menu-item pure-menu-selected">
+                                <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/">PA3</a>
+                            </li>
+                        
+                            <li class="pure-menu-item ">
+                                <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/h1/">Homework 1</a>
+                            </li>
+                        
+                            <li class="pure-menu-item ">
+                                <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/h2/">Homework 2</a>
+                            </li>
+                        
+                            <li class="pure-menu-item ">
+                                <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/h3/">Homework 3</a>
+                            </li>
+                        
+                        </ul>
+                    </li>
+                
+            
+                
+                
+                
+                    
+                
+                
+                    <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover ">
+                        <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/exams">Exams</a>
+                        <ul class="pure-menu-children" role="menu">
+                        
+                            <li class="pure-menu-item ">
+                                <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/exams/exam2/">Midterm 2</a>
+                            </li>
+                        
+                            <li class="pure-menu-item ">
+                                <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/exams/exam1/">Midterm 1</a>
+                            </li>
+                        
+                            <li class="pure-menu-item ">
+                                <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/exams/">General Information</a>
+                            </li>
+                        
+                        </ul>
+                    </li>
+                
+            
+                
+                
+                
+                    
+                
+                
+                    <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover ">
+                        <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/resources/all">Resources</a>
+                        <ul class="pure-menu-children" role="menu">
+                        
+                            <li class="pure-menu-item ">
+                                <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/resources/setup/">Course Setup</a>
+                            </li>
+                        
+                            <li class="pure-menu-item ">
+                                <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/resources/own-machine/">On Your Own Machine</a>
+                            </li>
+                        
+                            <li class="pure-menu-item ">
+                                <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/resources/indev-resources/">In-Dev Resources</a>
+                            </li>
+                        
+                            <li class="pure-menu-item ">
+                                <a class="pure-menu-link" href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/resources/maketutorial/">Makefile Tutorial</a>
+                            </li>
+                        
+                        </ul>
+                    </li>
+                
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="pure-g">
+    <div class="pure-u-md-8-24 pure-u-lg-6-24" id="toc">
+        <div class="pure-u-md-8-24 pure-u-lg-6-24">
+            <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li class=""><a href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/#goals-and-overview">Goals and Overview</a></li>
+<li class=""><a href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/#the-assignment-part-1-inspiration-and-background">The Assignment, Part 1: Inspiration and Background</a>
+<ul>
+<li class="active"><a href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/#quadtrees-on-a-torus">QuadTrees on a Torus</a></li>
+<li class="visible"><a href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/#entropy">Entropy</a></li>
+</ul></li>
+<li class=""><a href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/#the-assignment-part-2-coding">The Assignment, Part 2: Coding</a>
+<ul>
+<li class=""><a href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/#problem-specification">Problem Specification</a>
+<ul>
+<li><a href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/#in-class-stats">In <code>class stats</code>:</a></li>
+<li><a href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/#in-class-toqutree">In <code>class toqutree</code>:</a></li>
+</ul></li>
+<li class=""><a href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/#implementation-constraints-and-advice">Implementation Constraints and Advice</a></li>
+<li class=""><a href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/#getting-the-given-code">Getting the Given Code</a></li>
+<li class=""><a href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/#testing-your-code">Testing your code</a></li>
+<li class=""><a href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/#handing-in-your-code">Handing in your code</a></li>
+</ul></li>
+<li class=""><a href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/#good-luck">Good luck!</a></li>
+</ul></li>
+</ul>
+</nav>
+        </div>
+    </div>
+    <div class="pure-u-1-1 pure-u-md-14-24 pure-u-lg-18-24" id="content">
+
+
+
+<div class="page-header">
+    <h1>PA3 <small>The Art of Compression</small></h1>
+    
+    <div class="assignment-due-final">
+            Due:
+            <ul class="due-dates">
+                <li><span class="long-date">Friday, April 5 at 11:59 PM</span>
+<span class="short-date">4/5 @ 11:59 PM</span></li>
+                
+            </ul>
+    </div>
+    
+    
+    
+</div>
+
+
+
+
+
+<div class="alert alert-warning">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+    <strong>UPDATES!</strong>
+<p>NOTE: Clarifications, updates, and hints to solving this PA can be found on this piazza page:  <a href="https://piazza.com/class/jpu51kyvbx9ps?cid=1779">https://piazza.com/class/jpu51kyvbx9ps?cid=1779</a></p>
+
+</div>
+
+<div class="alert alert-warning">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+    <strong>Lab machines</strong>
+<p>We will be grading the PAs for this course using an image similar to the remote Linux machines. Any
+errors that you run into as a result of developing your code on <a href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/resources/own-machine/">other
+machines</a> are your own responsibility.</p>
+
+</div>
+
+<h2 id="goals-and-overview">Goals and Overview<a href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/#goals-and-overview" class="header-anchor"></a></h2>
+
+<p>In this PA (Programming Assignment) you will:</p>
+
+<ul>
+<li>learn about algorithmic art.</li>
+<li>learn about an unusual algorithm for lossy image compression.</li>
+<li>learn about space partitioning trees called Quad Trees.</li>
+<li>learn about clever mechanisms for speeding up statistical algorithms.</li>
+<li>learn to be aware of memory usage in recursive programs.</li>
+</ul>
+
+<h2 id="the-assignment-part-1-inspiration-and-background">The Assignment, Part 1: Inspiration and Background<a href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/#the-assignment-part-1-inspiration-and-background" class="header-anchor"></a></h2>
+
+<p>The inspiration for this assignment came from an <a href="https://mymodernmet.com/algorithm-art-color-study-dimitris-ladopoulos/">article</a> about an artist whose work
+recreates classic portraits with a blocky effect. The exact algorithm he used is not given in the
+article, but we will create similar images using a strategy for image representation that
+underlies common lossy image compression algorithms.</p>
+
+<p>The two images below illustrate the result of this assignment. Note that the image on the right sacrifices color
+detail in rectangles that do not contain much color variability in the original image, but maintains
+detail by using smaller rectangles in areas of the original image containing lots of variability.</p>
+
+<p></p><figure style="text-align: center;">
+    
+    <img src="./PA3 - CPSC221 2018W2_ Data Structures_files/PA3pic1.png">
+    
+    
+</figure> <figure style="text-align: center;">
+    
+    <img src="./PA3 - CPSC221 2018W2_ Data Structures_files/prelim-stanley.05.png">
+    
+    
+</figure><p></p>
+
+<p>In specifying the algorithm we make several conventional assumptions, illustrated below:</p>
+
+<ul>
+<li>The origin, position (0,0), is in the upper left corner of the image.</li>
+<li>Rectangles are typically specified either by a pair of points at its upper left and lower right corners, or by an upper left point, together with dimensions (this assingment uses both).</li>
+<li>The upper left corner of a rectangle is the one nearest to the origin.</li>
+<li>Image locations are typically specified as (x,y), where x is a horizontal offset, and y is a vertical offset.</li>
+</ul>
+
+<figure style="text-align: center;">
+    
+    <img src="./PA3 - CPSC221 2018W2_ Data Structures_files/PA3pic3.png">
+    
+    
+</figure>
+
+<h3 id="quadtrees-on-a-torus">QuadTrees on a Torus<a href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/#quadtrees-on-a-torus" class="header-anchor"></a></h3>
+
+<p>The original image will be represented in memory as a 4-ary tree whose nodes contain information about square subsets of the image.</p>
+
+<ul>
+<li>Every node is the root of a subtree that represents a subset of the original image. Note that the region might not be contiguous in the original image.</li>
+<li>Every node also contains a pixel that represents the average color over the square in the original image.</li>
+<li>Every node contains a dimension that determines the size of the square it represents. If dimension == d, then the node represents a <span class="MathJax_Preview" style="color: inherit; display: none;"></span><div class="MathJax_Display" style="text-align: center;"><span class="MathJax" id="MathJax-Element-1-Frame" tabindex="0" style="text-align: center; position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot; display=&quot;block&quot;&gt;&lt;msup&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;/msup&gt;&lt;mo&gt;&amp;#x00D7;&lt;/mo&gt;&lt;msup&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;/msup&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-1" style="width: 3.618em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.998em; height: 0px; font-size: 121%;"><span style="position: absolute; clip: rect(1.449em, 1003em, 2.637em, -999.997em); top: -2.477em; left: 0em;"><span class="mrow" id="MathJax-Span-2"><span class="msubsup" id="MathJax-Span-3"><span style="display: inline-block; position: relative; width: 0.932em; height: 0px;"><span style="position: absolute; clip: rect(3.153em, 1000.47em, 4.135em, -999.997em); top: -3.975em; left: 0em;"><span class="mn" id="MathJax-Span-4" style="font-family: STIXGeneral-Regular;">2</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -4.388em; left: 0.519em;"><span class="mi" id="MathJax-Span-5" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">d<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span><span class="mo" id="MathJax-Span-6" style="font-family: STIXGeneral-Regular; padding-left: 0.261em;">×</span><span class="msubsup" id="MathJax-Span-7" style="padding-left: 0.261em;"><span style="display: inline-block; position: relative; width: 0.932em; height: 0px;"><span style="position: absolute; clip: rect(3.153em, 1000.47em, 4.135em, -999.997em); top: -3.975em; left: 0em;"><span class="mn" id="MathJax-Span-8" style="font-family: STIXGeneral-Regular;">2</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -4.388em; left: 0.519em;"><span class="mi" id="MathJax-Span-9" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">d<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.482em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 1.253em;"></span></span></nobr><span class="MJX_Assistive_MathML MJX_Assistive_MathML_Block" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><msup><mn>2</mn><mi>d</mi></msup><mo>×</mo><msup><mn>2</mn><mi>d</mi></msup></math></span></span></div><script type="math/tex; mode=display" id="MathJax-Element-1">2^d\times 2^d</script> square.</li>
+<li>When a square is split into four smaller squares, the parent node represents the whole square, and the 4 children each contain a quadrant of the original.</li>
+<li>Each square is split into 4 equal sized quadrants by an optimal choice of “splitting” point, described below.</li>
+<li>Before pruning, every leaf in the tree corresponds to a pixel in the original image, and every pixel is represented by some leaf. The image below represents a part of the unpruned quadtree. We did not draw the leaves in the diagram.</li>
+</ul>
+
+<figure style="text-align: center;">
+    
+    <img src="./PA3 - CPSC221 2018W2_ Data Structures_files/quadtrees.png">
+    
+    
+</figure>
+
+<p>Consider every node to represent a square image that you will subdivide into 4 children nodes. In order to determine how to partition the square, you will find a splitting point from among the points in the light green region in the image below (in general, this will be a <span class="MathJax_Preview" style="color: inherit; display: none;"></span><div class="MathJax_Display" style="text-align: center;"><span class="MathJax" id="MathJax-Element-2-Frame" tabindex="0" style="text-align: center; position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot; display=&quot;block&quot;&gt;&lt;msup&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;mo&gt;&amp;#x2212;&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/mrow&gt;&lt;/msup&gt;&lt;mo&gt;&amp;#x00D7;&lt;/mo&gt;&lt;msup&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;mo&gt;&amp;#x2212;&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/mrow&gt;&lt;/msup&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-10" style="width: 5.633em; display: inline-block;"><span style="display: inline-block; position: relative; width: 4.651em; height: 0px; font-size: 121%;"><span style="position: absolute; clip: rect(1.449em, 1004.65em, 2.637em, -999.997em); top: -2.477em; left: 0em;"><span class="mrow" id="MathJax-Span-11"><span class="msubsup" id="MathJax-Span-12"><span style="display: inline-block; position: relative; width: 1.759em; height: 0px;"><span style="position: absolute; clip: rect(3.153em, 1000.47em, 4.135em, -999.997em); top: -3.975em; left: 0em;"><span class="mn" id="MathJax-Span-13" style="font-family: STIXGeneral-Regular;">2</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -4.388em; left: 0.519em;"><span class="texatom" id="MathJax-Span-14"><span class="mrow" id="MathJax-Span-15"><span class="mi" id="MathJax-Span-16" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">k<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mo" id="MathJax-Span-17" style="font-size: 70.7%; font-family: STIXGeneral-Regular;">−</span><span class="mn" id="MathJax-Span-18" style="font-size: 70.7%; font-family: STIXGeneral-Regular;">1</span></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span><span class="mo" id="MathJax-Span-19" style="font-family: STIXGeneral-Regular; padding-left: 0.261em;">×</span><span class="msubsup" id="MathJax-Span-20" style="padding-left: 0.261em;"><span style="display: inline-block; position: relative; width: 1.759em; height: 0px;"><span style="position: absolute; clip: rect(3.153em, 1000.47em, 4.135em, -999.997em); top: -3.975em; left: 0em;"><span class="mn" id="MathJax-Span-21" style="font-family: STIXGeneral-Regular;">2</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -4.388em; left: 0.519em;"><span class="texatom" id="MathJax-Span-22"><span class="mrow" id="MathJax-Span-23"><span class="mi" id="MathJax-Span-24" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">k<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mo" id="MathJax-Span-25" style="font-size: 70.7%; font-family: STIXGeneral-Regular;">−</span><span class="mn" id="MathJax-Span-26" style="font-size: 70.7%; font-family: STIXGeneral-Regular;">1</span></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.482em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 1.253em;"></span></span></nobr><span class="MJX_Assistive_MathML MJX_Assistive_MathML_Block" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><msup><mn>2</mn><mrow class="MJX-TeXAtom-ORD"><mi>k</mi><mo>−</mo><mn>1</mn></mrow></msup><mo>×</mo><msup><mn>2</mn><mrow class="MJX-TeXAtom-ORD"><mi>k</mi><mo>−</mo><mn>1</mn></mrow></msup></math></span></span></div><script type="math/tex; mode=display" id="MathJax-Element-2">2^{k-1} \times 2^{k-1}</script> square in the middle of the <span class="MathJax_Preview" style="color: inherit; display: none;"></span><div class="MathJax_Display" style="text-align: center;"><span class="MathJax" id="MathJax-Element-3-Frame" tabindex="0" style="text-align: center; position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot; display=&quot;block&quot;&gt;&lt;msup&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;/msup&gt;&lt;mo&gt;&amp;#x00D7;&lt;/mo&gt;&lt;msup&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;/msup&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-27" style="width: 3.515em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.895em; height: 0px; font-size: 121%;"><span style="position: absolute; clip: rect(1.449em, 1002.89em, 2.637em, -999.997em); top: -2.477em; left: 0em;"><span class="mrow" id="MathJax-Span-28"><span class="msubsup" id="MathJax-Span-29"><span style="display: inline-block; position: relative; width: 0.881em; height: 0px;"><span style="position: absolute; clip: rect(3.153em, 1000.47em, 4.135em, -999.997em); top: -3.975em; left: 0em;"><span class="mn" id="MathJax-Span-30" style="font-family: STIXGeneral-Regular;">2</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -4.388em; left: 0.519em;"><span class="mi" id="MathJax-Span-31" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">k<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span><span class="mo" id="MathJax-Span-32" style="font-family: STIXGeneral-Regular; padding-left: 0.261em;">×</span><span class="msubsup" id="MathJax-Span-33" style="padding-left: 0.261em;"><span style="display: inline-block; position: relative; width: 0.881em; height: 0px;"><span style="position: absolute; clip: rect(3.153em, 1000.47em, 4.135em, -999.997em); top: -3.975em; left: 0em;"><span class="mn" id="MathJax-Span-34" style="font-family: STIXGeneral-Regular;">2</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -4.388em; left: 0.519em;"><span class="mi" id="MathJax-Span-35" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">k<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.482em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 1.253em;"></span></span></nobr><span class="MJX_Assistive_MathML MJX_Assistive_MathML_Block" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><msup><mn>2</mn><mi>k</mi></msup><mo>×</mo><msup><mn>2</mn><mi>k</mi></msup></math></span></span></div><script type="math/tex; mode=display" id="MathJax-Element-3">2^k\times 2^k</script> image:</p>
+
+<figure style="text-align: center;">
+    
+    <img src="./PA3 - CPSC221 2018W2_ Data Structures_files/splitting.png">
+    
+    
+</figure>
+
+<p>Traverse the pixels in the green square, looking for the one which minimizes the average entropy (described below) over the 4 squares it determines.  In this example, we suppose the pixel containing the orange dot gives the minimum entropy score. That orange dot pixel will become the upper left corner of the SE quadrant of the 4-way split.</p>
+
+<figure style="text-align: center;">
+    
+    <img src="./PA3 - CPSC221 2018W2_ Data Structures_files/squares.png">
+    
+    
+</figure>
+
+<p>The center found in the illustration will be the upper left corner of the square that we will call SE, for Southeast because it is below and to the right of the optimal splitting point.  The squares marked NW, SW, and NE are the upper left corners of the 3 other squares determined by the split. You will need to compute these locations, given the optimal splitting point, and considering that the edges of the square image wrap around to meet.</p>
+
+<figure style="text-align: center;">
+    
+    <img src="./PA3 - CPSC221 2018W2_ Data Structures_files/biglittlesquares.png">
+    
+    
+</figure>
+
+<p>Once you have an optimal splitting point, and the upper left corner of all 4 squares, you will explicitly create the 4 squares as the bases for the current node’s children. The illustration shows you how to build the NW child.</p>
+
+<p>Note that in the general case, one of the 4 squares will be a whole square subset of the current image, one will be a horizontal shift into segments where part of the square is on the right of the image, and part is on the left, corresponding to SW in the example above (note that the number of shifted locations might be 0), one will be a similar vertical shift (again, where the shift might be 0), and one will be both a horizontal and a vertical shift (again, where one or both directions’ shifts might be 0).</p>
+
+<figure style="text-align: center;">
+    
+    <img src="./PA3 - CPSC221 2018W2_ Data Structures_files/child.png">
+    
+    
+</figure>
+
+<p>Finally, the squares you reconstruct out of a partition of the current square are (recursively) the basis for the child nodes.</p>
+
+<h3 id="entropy">Entropy<a href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/#entropy" class="header-anchor"></a></h3>
+
+<p>Splits are performed so as to minimize hue variability across the resulting squares. The variability
+measurement we use is the <em>entropy</em>, which is computed as a function of the distribution of colors
+in a rectangle as follows:
+Given a relative frequency table of the colors over some rectangle,
+where <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-4-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;msub&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;/msub&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-36" style="width: 0.932em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.777em; height: 0px; font-size: 121%;"><span style="position: absolute; clip: rect(1.501em, 1000.78em, 2.482em, -999.997em); top: -2.115em; left: 0em;"><span class="mrow" id="MathJax-Span-37"><span class="msubsup" id="MathJax-Span-38"><span style="display: inline-block; position: relative; width: 0.777em; height: 0px;"><span style="position: absolute; clip: rect(3.36em, 1000.47em, 4.341em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-39" style="font-family: STIXGeneral-Italic;">p</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.82em; left: 0.519em;"><span class="mi" id="MathJax-Span-40" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">i</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.12em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.309em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>p</mi><mi>i</mi></msub></math></span></span><script type="math/tex" id="MathJax-Element-4">p_i</script> represents
+the fraction of pixels whose hue, <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-5-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;h&lt;/mi&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-41" style="width: 0.622em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.519em; height: 0px; font-size: 121%;"><span style="position: absolute; clip: rect(1.655em, 1000.52em, 2.637em, -999.997em); top: -2.477em; left: 0em;"><span class="mrow" id="MathJax-Span-42"><span class="mi" id="MathJax-Span-43" style="font-family: STIXGeneral-Italic;">h</span></span><span style="display: inline-block; width: 0px; height: 2.482em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>h</mi></math></span></span><script type="math/tex" id="MathJax-Element-5">h</script>, is <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-6-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mn&gt;10&lt;/mn&gt;&lt;mo&gt;&amp;#x22C5;&lt;/mo&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mo&gt;&amp;#x2264;&lt;/mo&gt;&lt;mi&gt;h&lt;/mi&gt;&lt;mo&gt;&amp;lt;&lt;/mo&gt;&lt;mn&gt;10&lt;/mn&gt;&lt;mo&gt;&amp;#x22C5;&lt;/mo&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-44" style="width: 11.728em; display: inline-block;"><span style="display: inline-block; position: relative; width: 9.662em; height: 0px; font-size: 121%;"><span style="position: absolute; clip: rect(1.655em, 1009.61em, 2.792em, -999.997em); top: -2.477em; left: 0em;"><span class="mrow" id="MathJax-Span-45"><span class="mn" id="MathJax-Span-46" style="font-family: STIXGeneral-Regular;">10</span><span class="mo" id="MathJax-Span-47" style="font-family: STIXGeneral-Regular; padding-left: 0.261em;">⋅</span><span class="mi" id="MathJax-Span-48" style="font-family: STIXGeneral-Italic; padding-left: 0.261em;">i</span><span class="mo" id="MathJax-Span-49" style="font-family: STIXGeneral-Regular; padding-left: 0.313em;">≤</span><span class="mi" id="MathJax-Span-50" style="font-family: STIXGeneral-Italic; padding-left: 0.313em;">h</span><span class="mo" id="MathJax-Span-51" style="font-family: STIXGeneral-Regular; padding-left: 0.313em;">&lt;</span><span class="mn" id="MathJax-Span-52" style="font-family: STIXGeneral-Regular; padding-left: 0.313em;">10</span><span class="mo" id="MathJax-Span-53" style="font-family: STIXGeneral-Regular; padding-left: 0.261em;">⋅</span><span class="mo" id="MathJax-Span-54" style="font-family: STIXGeneral-Regular; padding-left: 0.261em;">(</span><span class="mi" id="MathJax-Span-55" style="font-family: STIXGeneral-Italic;">i</span><span class="mo" id="MathJax-Span-56" style="font-family: STIXGeneral-Regular; padding-left: 0.261em;">+</span><span class="mn" id="MathJax-Span-57" style="font-family: STIXGeneral-Regular; padding-left: 0.261em;">1</span><span class="mo" id="MathJax-Span-58" style="font-family: STIXGeneral-Regular;">)</span></span><span style="display: inline-block; width: 0px; height: 2.482em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.247em; border-left: 0px solid; width: 0px; height: 1.191em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>10</mn><mo>⋅</mo><mi>i</mi><mo>≤</mo><mi>h</mi><mo>&lt;</mo><mn>10</mn><mo>⋅</mo><mo stretchy="false">(</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></math></span></span><script type="math/tex" id="MathJax-Element-6">10\cdot i\leq h < 10\cdot(i+1)</script>, the entropy for the
+rectangle is</p>
+
+<div>
+<span class="MathJax_Preview" style="color: inherit; display: none;"></span><div class="MathJax_Display" style="text-align: center;"><span class="MathJax" id="MathJax-Element-7-Frame" tabindex="0" style="text-align: center; position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot; display=&quot;block&quot;&gt;&lt;mo&gt;&amp;#x2212;&lt;/mo&gt;&lt;msubsup&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;&amp;#x03A3;&lt;/mi&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;/mrow&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mn&gt;35&lt;/mn&gt;&lt;/mrow&gt;&lt;/msubsup&gt;&lt;mtext&gt;&amp;#xA0;&lt;/mtext&gt;&lt;msub&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;/msub&gt;&lt;msub&gt;&lt;mi&gt;log&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msub&gt;&lt;mo&gt;&amp;#x2061;&lt;/mo&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;/msub&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;mo&gt;.&lt;/mo&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-59" style="width: 8.577em; display: inline-block;"><span style="display: inline-block; position: relative; width: 7.079em; height: 0px; font-size: 121%;"><span style="position: absolute; clip: rect(1.501em, 1007.03em, 2.947em, -999.997em); top: -2.477em; left: 0em;"><span class="mrow" id="MathJax-Span-60"><span class="mo" id="MathJax-Span-61" style="font-family: STIXGeneral-Regular;">−</span><span class="msubsup" id="MathJax-Span-62"><span style="display: inline-block; position: relative; width: 1.759em; height: 0px;"><span style="position: absolute; clip: rect(3.153em, 1000.62em, 4.135em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-63" style="font-family: STIXGeneral-Regular;">Σ</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; clip: rect(3.36em, 1000.78em, 4.135em, -999.997em); top: -4.336em; left: 0.622em;"><span class="texatom" id="MathJax-Span-64"><span class="mrow" id="MathJax-Span-65"><span class="mn" id="MathJax-Span-66" style="font-size: 70.7%; font-family: STIXGeneral-Regular;">35</span></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; clip: rect(3.36em, 1001.09em, 4.135em, -999.997em); top: -3.665em; left: 0.622em;"><span class="texatom" id="MathJax-Span-67"><span class="mrow" id="MathJax-Span-68"><span class="mi" id="MathJax-Span-69" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">i</span><span class="mo" id="MathJax-Span-70" style="font-size: 70.7%; font-family: STIXGeneral-Regular;">=</span><span class="mn" id="MathJax-Span-71" style="font-size: 70.7%; font-family: STIXGeneral-Regular;">0</span></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span><span class="mtext" id="MathJax-Span-72" style="font-family: STIXGeneral-Regular;">&nbsp;</span><span class="msubsup" id="MathJax-Span-73"><span style="display: inline-block; position: relative; width: 0.777em; height: 0px;"><span style="position: absolute; clip: rect(3.36em, 1000.47em, 4.341em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-74" style="font-family: STIXGeneral-Italic;">p</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.82em; left: 0.519em;"><span class="mi" id="MathJax-Span-75" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">i</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span><span class="msubsup" id="MathJax-Span-76" style="padding-left: 0.209em;"><span style="display: inline-block; position: relative; width: 1.707em; height: 0px;"><span style="position: absolute; clip: rect(3.153em, 1001.24em, 4.341em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-77" style="font-family: STIXGeneral-Regular;">log</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.716em; left: 1.294em;"><span class="mn" id="MathJax-Span-78" style="font-size: 70.7%; font-family: STIXGeneral-Regular;">2</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span><span class="mo" id="MathJax-Span-79"></span><span class="mo" id="MathJax-Span-80" style="font-family: STIXGeneral-Regular;">(</span><span class="msubsup" id="MathJax-Span-81"><span style="display: inline-block; position: relative; width: 0.777em; height: 0px;"><span style="position: absolute; clip: rect(3.36em, 1000.47em, 4.341em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-82" style="font-family: STIXGeneral-Italic;">p</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.82em; left: 0.519em;"><span class="mi" id="MathJax-Span-83" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">i</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span><span class="mo" id="MathJax-Span-84" style="font-family: STIXGeneral-Regular;">)</span><span class="mo" id="MathJax-Span-85" style="font-family: STIXGeneral-Regular;">.</span></span><span style="display: inline-block; width: 0px; height: 2.482em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.434em; border-left: 0px solid; width: 0px; height: 1.566em;"></span></span></nobr><span class="MJX_Assistive_MathML MJX_Assistive_MathML_Block" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mo>−</mo><msubsup><mi mathvariant="normal">Σ</mi><mrow class="MJX-TeXAtom-ORD"><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mrow class="MJX-TeXAtom-ORD"><mn>35</mn></mrow></msubsup><mtext>&nbsp;</mtext><msub><mi>p</mi><mi>i</mi></msub><msub><mi>log</mi><mn>2</mn></msub><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>p</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo>.</mo></math></span></span></div><script type="math/tex; mode=display" id="MathJax-Element-7"> -\Sigma_{i=0}^{35} ~p_i\log_2(p_i). </script> 
+</div>
+
+<p>The entropy of a <em>split</em> is the average of the entropy of the 4 resulting squares. (In the case of ties, we choose the split which occurs first in a column-wise navigation of the feasible region of splits.)</p>
+
+<p>As part of this assignment, we build a data structure that allows us to find the histogram of colors
+for any rectangle, in constant time. To that end we build a 2D vector structure whose cells, (i,j),
+each contain a frequency table for the rectangle with upper left corner (0,0), and lower right
+corner (i,j).</p>
+
+<p>The first two splits of the image of Vancouver City Hall are
+illustrated in the second image below.</p>
+
+<p></p><figure style="text-align: center;">
+    
+    <img src="./PA3 - CPSC221 2018W2_ Data Structures_files/PA3pic5.png">
+    
+    
+</figure> <figure style="text-align: center;">
+    
+    <img src="./PA3 - CPSC221 2018W2_ Data Structures_files/prelim-CP3.png">
+    
+    
+</figure><p></p>
+
+<p>To achieve an artistic effect we prune, or cut off, parts of the quadtree. A parameter, tolerance,
+is used to evaluate a subtree’s suitability for pruning. A node is pruned if all of the
+leaves in its subtree are within tolerance of its average. To prune a node, simply clear the memory associated with each of its four children, leaving the node a leaf. Distances between colors are computed
+using the HSLAPixel dist function.</p>
+
+<h2 id="the-assignment-part-2-coding">The Assignment, Part 2: Coding<a href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/#the-assignment-part-2-coding" class="header-anchor"></a></h2>
+
+<h3 id="problem-specification">Problem Specification<a href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/#problem-specification" class="header-anchor"></a></h3>
+
+<p>Specifications for each function you write are contained in the
+given code. The list of functions here should serve as a
+checklist for completing the exercise.</p>
+
+<h4 id="in-class-stats">In <code>class stats</code>:<a href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/#in-class-stats" class="header-anchor"></a></h4>
+
+<ul>
+<li><code>stats(PNG &amp; im)</code></li>
+<li><code>HSLAPixel getAvg(pair&lt;int,int&gt; ul, pair&lt;int,int&gt; lr)</code></li>
+<li><code>long rectArea(pair&lt;int,int&gt; ul, pair&lt;int,int&gt; lr)</code></li>
+<li><code>double entropy(pair&lt;int,int&gt; ul, pair&lt;int,int&gt; lr)</code></li>
+<li><code>double entropy(vector&lt;int&gt; distn, int area)</code></li>
+</ul>
+
+<h4 id="in-class-toqutree">In <code>class toqutree</code>:<a href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/#in-class-toqutree" class="header-anchor"></a></h4>
+
+<ul>
+<li><code>void clear(Node * &amp; croot)</code></li>
+<li><code>Node * copy(const Node * croot)</code></li>
+<li><code>toqutree(PNG &amp; imIn, int dim)</code></li>
+<li><code>PNG render()</code></li>
+<li><code>void prune(int tol)</code></li>
+<li><code>int size()</code></li>
+<li><code>Node * buildTree(PNG * im, int k)</code></li>
+</ul>
+
+<h3 id="implementation-constraints-and-advice">Implementation Constraints and Advice<a href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/#implementation-constraints-and-advice" class="header-anchor"></a></h3>
+
+<p>We will be grading your work on functionality, efficiency, and memory use.</p>
+
+<p>The <code>stats</code> class is used only for constructing a node of the <code>toqutree</code>. The choice of optimal split requires the computation of
+statistics over
+each candidate split, and these are simply too expensive to compute in real time, especially given the number of
+squares in our recursively defined tree!  Instead, we precompute support
+structures that allow the necessary statistics to be computed in constant time. We request a particular set of
+structures, but
+we leave it as a puzzle for you to figure out how to use them to get the info you need.</p>
+
+<p>The <code>toqutree</code> class is a standard quadtree class, with a twist. We consider a square image to be a <code>torus</code> or a donut, in the sense that the right side of the image is considered to be adjacent to the left, and the top of the image is considered to be adjacent to the bottom. We’ve defined the <code>Node</code> class for you, and a few other necessary
+memory management functions, but everything else is left to you. Since we will be grading both the <code>.h</code> and <code>.cpp</code> files,
+you are welcome to add helper functions to the class.</p>
+
+<h3 id="getting-the-given-code">Getting the Given Code<a href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/#getting-the-given-code" class="header-anchor"></a></h3>
+
+<p>Download the source files from <a href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/pa3.zip">pa3.zip</a>, and follow the
+procedures you learned in lab to move them to your home directory
+on the remote linux machines.</p>
+
+<h3 id="testing-your-code">Testing your code<a href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/#testing-your-code" class="header-anchor"></a></h3>
+
+<p>We have provided two avenues for your exploration and testing, neither
+of which is sufficient to completely verify the correct implementation
+of all of your functions. You should add additional tests yourself!</p>
+
+<p>When you type <code>make</code> two executables are produced. One depends on the
+given main.cpp, and the other depends on the file testComp.cpp which
+is a small collection of test cases using the catch framework (as in
+previous assignments).</p>
+
+<h3 id="handing-in-your-code">Handing in your code<a href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/#handing-in-your-code" class="header-anchor"></a></h3>
+
+<p>To facilitate anonymous grading, <strong>do not</strong> include any personally-identifiable
+information (like your name, your University ID number, or your cwl) in any
+of your source files. Instead, before you hand in this assignment,
+create a file called <code>partners.txt</code> that contains only the CSIDs of
+ people in your collaboration partnership (if one exists), one per line.
+If you worked alone, include only your own
+CSID in this file. We will be automatically processing this information, so do
+not include anything else in the file.
+As always, if you’re working in a group, each
+group member must hand in the assignment. (Failure to cite collaborators
+violates our academic integrity policy;)</p>
+
+<p>The following files are used to grade PA3:</p>
+
+<ul>
+<li><code>stats.h</code></li>
+<li><code>stats.cpp</code></li>
+<li><code>toqutree.h</code></li>
+<li><code>toqutree.cpp</code></li>
+<li><code>partners.txt</code></li>
+</ul>
+
+<p>All other files will not be used for grading.</p>
+
+<p>You will submit your work to <a href="https://www.gradescope.com/courses/33829">gradeScope</a> as you did for PA2.</p>
+
+<h2 id="good-luck">Good luck!<a href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/mps/p3/#good-luck" class="header-anchor"></a></h2>
+
+
+    </div>
+</div>
+
+<div class="pure-g" id="footer">
+    <div class="pure-u-1 footer-links">
+        <ul>
+            
+            <li><a href="https://piazza.com/class/jpu51kyvbx9ps">Piazza</a></li><li><a href="https://www.ugrad.cs.ubc.ca/~cs221/2018W2/calendar/">Calendar</a></li>
+        </ul>
+    </div>
+    <div class="pure-u-1 footer-copyright">
+        <p>© 2019. All rights reserved. </p>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="./PA3 - CPSC221 2018W2_ Data Structures_files/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="./PA3 - CPSC221 2018W2_ Data Structures_files/MathJax.js"></script>
+<script type="text/javascript" src="./PA3 - CPSC221 2018W2_ Data Structures_files/toc.js"></script>
+<script type="text/javascript" src="./PA3 - CPSC221 2018W2_ Data Structures_files/graph-load.js"></script>
+<script type="text/javascript" src="./PA3 - CPSC221 2018W2_ Data Structures_files/menu.js"></script>
+<script type="text/javascript" src="./PA3 - CPSC221 2018W2_ Data Structures_files/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+    
+
+
+<div style="position: absolute; width: 0px; height: 0px; overflow: hidden; padding: 0px; border: 0px; margin: 0px;"><div id="MathJax_Font_Test" style="position: absolute; visibility: hidden; top: 0px; left: 0px; width: auto; padding: 0px; border: 0px; margin: 0px; white-space: nowrap; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; font-size: 40px; font-weight: normal; font-style: normal; font-family: STIXSizeOneSym, sans-serif;"></div></div></body><span class="gr__tooltip"><span class="gr__tooltip-content"></span><i class="gr__tooltip-logo"></i><span class="gr__triangle"></span></span><div><div class="gr_-editor gr-iframe-first-load" style="display: none;"><div class="gr_-editor_back"></div><iframe class="gr_-ifr gr-_dialog-content" src="./PA3 - CPSC221 2018W2_ Data Structures_files/saved_resource.html"></iframe></div></div><grammarly-card><div></div></grammarly-card></html>

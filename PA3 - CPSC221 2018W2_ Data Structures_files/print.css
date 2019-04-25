@@ -1,0 +1,99 @@
+#header, #footer, #toc, .assignment-doxygen {
+    display: none;
+}
+
+body {
+    font-size: 12pt;
+}
+
+h1 small {
+    color: #777;
+}
+
+.due-dates, .due-dates li {
+    display: inline-block;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+.due-dates li:not(:last-of-type) {
+    display: none;
+}
+
+.due-dates li .short-date {
+    display: none;
+}
+
+.alert {
+    position: relative;
+    box-sizing: border-box;
+    padding: 0.8em;
+    padding-left: 1.8em;
+    margin: 1em 0;
+    border: 1px solid #999;
+    border-radius: 0.2em;
+    page-break-inside: avoid;
+}
+
+.alert svg:first-of-type {
+    position: absolute;
+    top: 0.6em;
+    left: 0.2em;
+    width: 1.4em;
+    height: 1.4em;
+}
+
+.alert svg:first-of-type + p {
+    margin-top: 0;
+}
+.alert :last-child {
+    margin-bottom: 0;
+}
+
+a, a:visited, a:active, a:hover {
+    color: inherit;
+}
+
+pre {
+    padding: 0.2em;
+    border: 1px solid #999;
+    border-radius: 0.2em;
+    white-space: pre-wrap;
+    font-size: smaller;
+    page-break-inside: avoid;
+}
+
+pre, code {
+    font-family: Consolas,"Lucida Console",Monaco,monospace;
+}
+
+.hljs-keyword {
+    font-weight: bold;
+}
+.hljs-comment {
+    font-style: italic;
+    color: #666;
+}
+.hljs-string {
+    color: #555;
+}
+.hljs-meta {
+    color: #444;
+}
+
+figure img {
+    max-width: 100%;
+}
+
+.pure-table {
+    border-collapse: collapse;
+}
+.pure-table thead tr th {
+    text-align: left;
+    border-bottom: 1.5pt solid #444;
+}
+.pure-table tbody tr td {
+    padding: 2pt 4pt;
+    border-bottom: 1pt solid #777;
+}

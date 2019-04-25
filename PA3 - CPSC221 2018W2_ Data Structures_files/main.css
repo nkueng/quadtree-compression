@@ -1,0 +1,622 @@
+/*
+ * HEADER -- non-menu'd
+ *
+ * mobile menu stolen from http://purecss.io/layouts/tucked-menu-vertical/
+ */
+#header {
+    height: 3.3em;
+    -webkit-font-smoothing: antialiased;
+    background: #2d3e50;
+    -webkit-transition: height 0.5s;
+       -moz-transition: height 0.5s;
+        -ms-transition: height 0.5s;
+            transition: height 0.5s;
+}
+
+#header a,
+#header a:hover {
+    border-bottom: none;
+    border-top: none;
+}
+
+#header li .pure-menu-link,
+#header li.pure-menu-selected .pure-menu-link {
+    color: #6FBEF3;
+}
+
+#header .pure-menu.pure-menu-horizontal {
+    text-align: left;
+    padding: 0 0.5em;
+    line-height: 2em;
+    box-sizing: border-box;
+}
+
+#header .pure-menu.menu-header { /* CS 225 */
+    text-align: right;
+    padding-bottom: 0.2em;
+}
+
+#header .pure-menu-heading { /* CS 225 */
+    color: white;
+    font-weight: 400;
+    font-size: 120%;
+}
+
+#header .pure-menu.pure-menu-horizontal .pure-menu-children { /* nested menus */
+    background: #2D3E50;
+    text-align: left;
+}
+
+#header .pure-menu-horizontal .pure-menu-list > li > a { /* top-level navigation */
+    border-bottom: 0.2em solid transparent;
+    box-sizing: border-box;
+}
+
+#header .pure-menu-horizontal .pure-menu-children li a { /* nested navigation */
+    border-bottom: none;
+    border-top: none;
+    border-left: 0.5em solid transparent;
+    box-sizing: border-box;
+}
+
+#header .pure-menu-horizontal.pure-menu li.pure-menu-selected > a { /* current page */
+    color: white !important;
+    border-color: #5384A5;
+}
+
+#header .pure-menu-horizontal li a:hover,
+#header .pure-menu-horizontal li a:focus { /* top-level hover text */
+    background: none; /* override pure's default styling */
+    color: #AECFE5;
+    border-color: #5384A5;
+}
+
+/* when a nested menu is open, show border on the top-level menu, too. */
+#header .pure-menu-horizontal .pure-menu-list > li:hover > a {
+    border-color: #5384A5;
+}
+
+/*
+ * HEADER -- menu'd and open
+ */
+#header.open {
+    height: 24em;
+}
+
+#header.open .pure-menu-scrollable {
+    overflow-y: auto;
+}
+
+#header.open .pure-menu-children { /* no nested menus */
+    display: none;
+}
+
+#header.open .pure-menu-has-children > a::after { /* no arrow for nested menus */
+    display: none;
+}
+
+#header.open .pure-menu-item {
+    border-left: 0.5em solid transparent;
+}
+
+#header.open .pure-menu-item:hover {
+    border-color: #5384A5;
+}
+#header.open .pure-menu-item a:hover {
+    background: none;
+    color: #AECFE5;
+}
+
+#header.open .pure-menu-item.pure-menu-selected {
+    border-color: #5384A5;
+}
+#header.open .pure-menu-item.pure-menu-selected a {
+    color: white !important;
+}
+
+#menu-toggle {
+    margin-left: 0.5em;
+    width: 1.5em;
+    height: 2em;
+    position: absolute;
+    top: 0.6em;
+    left: 0;
+    display: none;
+}
+
+#menu-toggle .bar {
+    background-color: white;
+    display: block;
+    width: 1.5em;
+    height: 0.2em;
+    border-radius: 100px;
+    position: absolute;
+    top: 1.4em;
+    left: 0em;
+    -webkit-transition: all 0.5s;
+       -moz-transition: all 0.5s;
+        -ms-transition: all 0.5s;
+            transition: all 0.5s;
+}
+
+#menu-toggle .bar:first-child {
+    -webkit-transform: translateY(-0.5em);
+       -moz-transform: translateY(-0.5em);
+        -ms-transform: translateY(-0.5em);
+            transform: translateY(-0.5em);
+}
+
+#menu-toggle .bar:last-child {
+    -webkit-transform: translateY(-1em);
+       -moz-transform: translateY(-1em);
+        -ms-transform: translateY(-1em);
+            transform: translateY(-1em);
+}
+
+#menu-toggle.x .bar {
+    -webkit-transform: translateY(-0.5em) rotate(45deg);
+       -moz-transform: translateY(-0.5em) rotate(45deg);
+        -ms-transform: translateY(-0.5em) rotate(45deg);
+            transform: translateY(-0.5em) rotate(45deg);
+}
+
+#menu-toggle.x .bar:first-child {
+    -webkit-transform: translateY(-0.5em) rotate(-45deg);
+       -moz-transform: translateY(-0.5em) rotate(-45deg);
+        -ms-transform: translateY(-0.5em) rotate(-45deg);
+            transform: translateY(-0.5em) rotate(-45deg);
+}
+
+@media (max-width: 47.999em) {
+    #menu-toggle {
+        display: block;
+    }
+    #header {
+        overflow: hidden;
+    }
+}
+
+
+/*
+ * Footer
+ * Sticky footer from http://mystrd.at/modern-clean-css-sticky-footer/
+ */
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    margin: 0 0 6em;
+}
+
+#footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 4.5em;
+    background: #2d3e50;
+    color: #6FBEF3;
+    text-align: center;
+    margin-top: 2em;
+    margin-bottom: 0;
+    overflow-y: hidden;
+}
+
+#footer .footer-links {
+    margin-bottom: 0.2em;
+}
+#footer .footer-links ul {
+    list-style: none;
+    margin-bottom: 0;
+    padding: 0;
+}
+#footer .footer-links ul li {
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+}
+#footer .footer-links ul li:not(:first-of-type)::before {
+    content: "|";
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+}
+
+#footer .footer-copyright p {
+    margin-top: 0.2em;
+}
+
+
+/*
+ * General typography
+ */
+a,
+a:hover,
+a:visited,
+a:active {
+    color: #5384A5;
+    text-decoration: none;
+    border-top: 1px dotted transparent;
+    border-bottom: 1px dotted transparent;
+}
+
+a:hover {
+    border-color: #7FADCA;
+}
+
+blockquote {
+    /* border-left */
+}
+
+/*
+ * Figures
+ */
+figure, figure img {
+    max-width: 100%;
+}
+figure.inline-figure {
+    display: inline-block;
+}
+
+svg.graph {
+    overflow: visible;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    display: block;
+    max-width: 95%;
+}
+
+.graph-loading {
+    font-size: larger;
+    font-style: italic;
+    text-align: center;
+}
+
+body {
+    color: #333;
+    scroll-behavior: smooth;
+}
+
+.staff-grad {
+    font-weight: bold;
+}
+
+
+/*
+ * Table of Contents
+ */
+@media (max-width: 47.999em) {
+    #toc {
+        display: none;
+    }
+}
+
+#toc {
+    overflow-x: hidden;
+    position: relative;
+    box-sizing: border-box;
+}
+#toc div {
+    overflow-x: hidden;
+    position: fixed;
+    top: 4em;
+    left: 0px;
+}
+#toc ul {
+    padding-right: 1em;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+    width: calc(100% - 1em);
+}
+#toc ul ul ul ul {
+    display: none; /* hide h4+ */
+}
+#toc li {
+    padding: 0px 7px;
+    border-left: 3px solid transparent;
+    width: 100%;
+}
+
+#toc li a {
+    padding-top: 5px;
+}
+
+#toc a {
+    display: block;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-bottom: none;
+    border-top: none;
+    text-decoration: none;
+}
+#toc a:hover {
+    font-weight: bold;
+}
+
+#toc .visible {
+    border-left-color: #D9EDF7;
+}
+#toc .active {
+    border-left-color: #337AB7;
+}
+#toc .active > a {
+    font-weight: bold;
+}
+
+
+
+/*
+ * Content
+ */
+#content {
+    padding-left: 1em;
+    padding-right: 1em;
+    max-width: 60em;
+    box-sizing: border-box;
+    background: white;
+}
+
+#content.fullwidth {
+    max-width: initial;
+}
+
+.header-anchor,
+.header-anchor:hover {
+    border: none;
+}
+.header-anchor::after {
+    margin-left: 0.5em;
+    font-size: smaller;
+    opacity: 0;
+    vertical-align: baseline;
+    content: "¶";
+    -webkit-transition: opacity 0.25s;
+       -moz-transition: opacity 0.25s;
+        -ms-transition: opacity 0.25s;
+            transition: opacity 0.25s;
+}
+
+h2:hover .header-anchor::after,
+h3:hover .header-anchor::after,
+h4:hover .header-anchor::after,
+h5:hover .header-anchor::after,
+h6:hover .header-anchor::after {
+    opacity: 1;
+}
+
+
+pre, code {
+    font-family: Consolas,"Lucida Console",Monaco,monospace;
+}
+
+/* code blocks */
+pre {
+    background: #E6E8E9;
+    padding: 0.2em;
+    border: 0.1em solid #9FA4A6;
+    border-radius: 0.5em;
+}
+pre > code.hljs:not([class*="language-"]) * {
+    color: inherit !important;
+}
+pre > code.hljs {
+    position: relative;
+    overflow-x: visible;
+    background: #E6E8E9;
+}
+pre > code::before {
+    position: absolute;
+    top: -0.2em;
+    right: -0.2em;
+    padding: 0.2em;
+    color: #A31515;
+    border-left: 0.1em solid #9FA4A6;
+    border-bottom: 0.1em solid #9FA4A6;
+    border-bottom-left-radius: 0.5em;
+
+    opacity: 0.5;
+    -webkit-transition-delay: 0.5s;
+       -moz-transition-delay: 0.5s;
+        -ms-transition-delay: 0.5s;
+            transition-delay: 0.5s;
+    -webkit-transition: opacity 0.5s linear 0.5s;
+       -moz-transition: opacity 0.5s linear 0.5s;
+        -ms-transition: opacity 0.5s linear 0.5s;
+            transition: opacity 0.5s linear 0.5s;
+}
+pre:hover > code::before {
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: opacity 0.5s linear 0.5s, visibility 0s linear 1s;
+       -moz-transition: opacity 0.5s linear 0.5s, visibility 0s linear 1s;
+        -ms-transition: opacity 0.5s linear 0.5s, visibility 0s linear 1s;
+            transition: opacity 0.5s linear 0.5s, visibility 0s linear 1s;
+}
+pre > code.language-bash::before {
+    content: 'TERMINAL';
+}
+pre > code.language-gdb::before {
+    content: 'GDB';
+}
+pre > code.language-cpp::before {
+    content: 'C++';
+}
+
+
+.assignment-due-extra, .assignment-due-final, .assignment-doxygen {
+    margin: 0.25em 0;
+}
+
+.exam-date, .assignment-due-extra, .assignment-due-final {
+    font-weight: bold;
+}
+
+.due-dates {
+    margin: 0 !important;
+    margin-left: 3px !important;
+    padding: 0 !important;
+    list-style-type: none;
+    text-indent: 0;
+    display: inline;
+}
+
+.due-dates li {
+    display: inline;
+}
+
+.due-dates li .short-date {
+    display: none;
+}
+
+.due-dates li:not(:last-of-type) {
+    font-weight: normal;
+    text-decoration: line-through;
+    color: #999999
+}
+
+.due-dates li:not(:last-of-type) .short-date {
+    display: initial;
+}
+.due-dates li:not(:last-of-type) .long-date {
+    display: none;
+}
+
+    /*         Extra credit: */
+    /*         <ul class="due-dates"> */
+    /*             <li>{{ dateFormat "Monday, January 2 at 3:04 PM" .Params.due_extra }}</li> */
+    /*             {{ range .Params.extensions_extra }} */
+    /*                 <li>{{ dateFormat "Monday, January 2 at 3:04 PM" . }}</li> */
+    /*             {{ end }} */
+    /*         </ul> */
+    /* </div> */
+    /* {{ end }} */
+    /* {{ if and (isset .Params "due_final") (ne .Params.due_final "") }} */
+    /* <div class="assignment-due-final"> */
+    /*         Due: */
+    /*         <ul class="due-dates"> */
+
+
+
+
+
+
+dl.exam-details dt {
+    font-weight: bold;
+    width: 6em;
+    float: left;
+}
+dl.exam-details dt::after {
+    content: ":";
+}
+dl.exam-details dd {
+    margin-left: 6em;
+    margin-bottom: 0.3em;
+}
+dl.exam-details dd p:first-child {
+    margin-top: 0;
+}
+
+dl.exam-details ul.practice {
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style-type: none;
+    text-indent: 0;
+    display: inline;
+    letter-spacing: -0.31em;
+}
+dl.exam-details ul.practice li {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: inline;
+    letter-spacing: normal;
+    word-spacing: -0.31em;
+    white-space: nowrap;
+}
+dl.exam-details ul.practice li:not(:last-child)::after {
+    content: '\2022 ';
+    margin: 0pt 0.1em;
+}
+dl.exam-details ul.practice span.prev-solution {
+    margin-left: 0.2em;
+    padding-left: 0.2em;
+    border-left: 1pt solid black;
+    letter-spacing: normal;
+    word-spacing: normal;
+}
+
+dl.exam-details div.exams {
+    display: inline-block;
+    margin: 10px 5px;
+}
+
+/* alerts */
+.alert {
+    position: relative;
+    box-sizing: border-box;
+    padding: 0.8em;
+    padding-left: 1.8em;
+    margin: 1em 0;
+    border: 1px solid black;
+    border-radius: 0.4em;
+    background-color: #A9A9A9;
+}
+
+.alert svg:first-of-type {
+    position: absolute;
+    top: 0.6em;
+    left: 0.2em;
+    width: 1.4em;
+    height: 1.4em;
+}
+
+.alert svg:first-of-type + p {
+    margin-top: 0;
+}
+.alert :last-child {
+    margin-bottom: 0;
+}
+
+.alert.alert-warning {
+    border-color: #C2A327;
+    background-color: #FFE478;
+}
+.alert.alert-warning svg:first-of-type path {
+    fill: #C2A327;
+}
+
+.alert.alert-danger {
+    border-color: #E0514D;
+    background-color: #FFA09E;
+}
+.alert.alert-danger svg:first-of-type path {
+    fill: #E0514D;
+}
+
+.alert.alert-info {
+    border-color: #1F577C;
+    background-color: #B5D2E4;
+}
+.alert.alert-info svg:first-of-type path {
+    fill: #1F577C;
+}
+
+.alert.alert-success {
+    border-color: #89DE8F;
+    background-color: #BBEFBE;
+}
+.alert.alert-success svg:first-of-type path {
+    fill: #89DE8F;
+}
+
+h1 small,
+h2 small,
+h3 small,
+h4 small,
+h5 small,
+h6 small {
+    color: #80ABC7;
+}
